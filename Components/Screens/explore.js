@@ -1,76 +1,73 @@
 import React, { Component } from "react";
-import { View, Image, StyleSheet, Text, ScrollView, TextInput, SafeAreaView } from "react-native";
+import { View, StyleSheet, Text, ScrollView, TextInput } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Category from '../Categories/category';
+
 export default class Explore extends Component {
   render() {
     return (
-      <ScrollView >
-        <SafeAreaView style={{ flex: 1 }}>
-          <View style={styles.searchbarView}>
-            <View style={styles.searchView}>
-              <Icon name="search" size={20} style={{ margin: 20 }} />
-              <TextInput 
-              underlineColorAndroid="transparent"
-              placeholder="Search..."
-              placeholderTextColor="grey"
-              style={styles.searchtextView}/>
-              <Icon name="close" size={20} style={styles.closeIcon}/>
-            </View>
+        <View style={Styles.container}>
+          <View style={Styles.searchSection}>
+            <Icon style={Styles.searchIcon} name="search" size={20} color="#000"/>
+            <TextInput
+                style={Styles.input}
+                placeholder="Search.."
+                underlineColorAndroid="transparent"
+            />
+            <Icon style={Styles.searchIcon} name="close" size={20} color="#000"/>
           </View>
-        </SafeAreaView>
-        <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
-          <Text style={{fontSize: 24,fontWeight: "700",paddingHorizontal: 20}}>
-            What can we help you find, Dark Lord?
-          </Text>
-          <View
-            style={{
-              height: 130,
-              width: 130,
-              marginLeft: 20,
-              borderWidth: 0.5,
-              borderColor: "#dddddd"
-            }}
-          >
-            <View style={{ flex: 2 }}>
-              <Image
-                source={require('../../Assests/car.png')}
-                style={{
-                  flex: 1,
-                  width: null,
-                  height: null,
-                  resizeMode: "cover"
-                }}
+          <View style={{flex:1, height: 150, marginTop: 10 }}>
+            <ScrollView horizontal={true} 
+              showsHorizontalScrollIndicator={false}  
+              style={Styles.scrollStyle}>
+              <Category
+                imageUri={require("../../Assests/car.png")}
+                name="Home"
               />
-            </View>
-            <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10 }}>
-              <Text>Cars</Text>
-            </View>
+              <Category
+                imageUri={require("../../Assests/car.png")}
+                name="Experiences"
+              />
+              <Category
+                imageUri={require("../../Assests/car.png")}
+                name="Resturant"
+              />
+            </ScrollView>
           </View>
-        </View>
-    </ScrollView>
-    );
+      </View>
+    )
   }
 }
-const styles= StyleSheet.create({
-  searchbarView: {
-    backgroundColor: "#3c6382",
-    height: 80,
+
+const Styles = StyleSheet.create({
+  scrollStyle:{
+    backgroundColor:'#57606f',
   },
-  searchView:{
-    borderRadius:20,
-    flexDirection: "row",
-    marginTop:10,
-    backgroundColor: "#0a3d62",
-    marginHorizontal: 10,
+  container:{
+    flex:1,
+    height:180,
+    backgroundColor:'#84817a'
   },
-  searchtextView: {
-    flex: 1,
-    borderRadius:30,
-    fontWeight: "700", 
-    backgroundColor: "#0a3d62"
-  },
-  closeIcon:{
-    flexDirection:'row',
+  searchSection: {
+    marginHorizontal:20,
     margin:20,
+    borderRadius:10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#aaa69d',
+  },
+  searchIcon: {
+      padding: 10,
+  },
+  input: {
+      flex: 1,
+      borderRadius:10,
+      textAlign:'center',
+      paddingTop: 10,
+      paddingRight: 10,
+      paddingBottom: 10,
+      backgroundColor: '#aaa69d',
+      color: '#424242',
   }
 })
